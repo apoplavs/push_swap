@@ -19,7 +19,6 @@ int				main(int argc, char **argv)
 	if (argc < 2)
 		return (1);
 	stack = read_args(argc, argv);
-	ft_sort_stack(stack, argc - 1);
-	//sleep(100);
+	ft_sort_stack(stack);
 	return (0);
 }

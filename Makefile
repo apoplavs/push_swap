@@ -25,7 +25,7 @@ OBJ = $(SRC:.c=.o)
 
 HEADERS = libft/libft.h push_swap.h get_next_line.h
 
-FLAGS = -Wall
+FLAGS = -Wall -Wextra -Werror
 
 all: $(NAME1) $(NAME2)
 

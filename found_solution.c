@@ -2,7 +2,6 @@
 // Created by Andriy Poplavskyi on 3/18/17.
 //
 #include "push_swap.h"
-#include <stdio.h>
 
 int         recursive_sort(t_stacks *stack_a, int n, int *max, char opr, char **command)
 {
@@ -28,7 +27,7 @@ int         recursive_sort(t_stacks *stack_a, int n, int *max, char opr, char **
 	return (0);
 }
 
-void        ft_sort_stack(t_stacks *stack_a, int len)
+void        ft_sort_stack(t_stacks *stack_a)
 {
 	t_stacks *stack_b;
 	char     *command;

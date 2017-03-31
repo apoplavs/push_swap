@@ -30,6 +30,14 @@ typedef struct		s_stacks
 	struct s_stacks	*next;
 }					t_stacks;
 
+typedef struct      s_flags
+{
+	int color       : 1;
+	int file        : 1;
+	int s_status    : 1;
+	int time_step   : 1;
+}                   t_flags;
+
 /*
 ** init_argc.c
 */
@@ -61,7 +69,7 @@ int					check_solve(t_stacks *stack_a, t_stacks *stack_b);
 /*
 ** found_solution.c
 */
-void				ft_sort_stack(t_stacks *stack_a, int len);
+void				ft_sort_stack(t_stacks *stack_a);
 void				a_to_b(t_stacks *stack_a, t_stacks *stack_b,
 	char **command, int len);
 void				b_to_a(t_stacks *stack_a, t_stacks *stack_b,

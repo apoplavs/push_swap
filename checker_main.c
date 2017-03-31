@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include "stdio.h"
+#include <stdio.h>
 
 void			ft_push_a_b(char *str, t_stacks *stack_a, t_stacks *stack_b)
 {

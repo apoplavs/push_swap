@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdio.h>
 
 void			del_inst(t_list *inst)
 {
@@ -44,10 +43,10 @@ t_stacks		*read_args(int ac, char **av)
 	int			*mas;
 
 	i = 0;
-	check_args(ac, av);
 	mas = malloc(sizeof(int) * ac);
 	while (++i < ac)
 		mas[i - 1] = ft_atoi(av[i]);
+	check_args(ac, av);
 	check_duplicates(mas, ac - 1);
 	return (ft_init_stack(mas, ac - 1));
 }
@@ -97,7 +96,6 @@ t_list			*read_instructions(int fd)
 		p = inst;
 		i = 0;
 		free(str);
-		//sleep(1);
 		while (i < 1000)
 			i++;
 	}
