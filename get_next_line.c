@@ -15,6 +15,7 @@
 static int		write_line(char **line, t_fd *tmp)
 {
 	int			i;
+	char		*s;
 
 	i = 0;
 	while (tmp->str[i] != '\n' && tmp->str[i])
@@ -23,7 +24,9 @@ static int		write_line(char **line, t_fd *tmp)
 	ft_strncpy(*line, tmp->str, (size_t)i);
 	if (!tmp->str[i] && i == 0)
 		return (0);
-	tmp->str = tmp->str + i + 1;
+	s = ft_strdup(tmp->str + i + 1);
+	free(tmp->str);
+	tmp->str = s;
 	return (1);
 }
 
@@ -60,15 +63,13 @@ static int		ft_read_file(int t, t_fd *tmp, char *buf, size_t len)
 
 	tab = NULL;
 	p = ft_read_support(tab, tmp->str, tmp->str, 0);
+	free(tmp->str);
 	while (t > 0)
 	{
 		if ((t = (int)read(tmp->fd, buf, BUFF_SIZE)) == -1)
 			return (-1);
-		if (p != NULL)
-		{
-			tab = ft_read_support(p, tab, buf, 2);
+		if (p != NULL && (tab = ft_read_support(p, tab, buf, 2)))	
 			len = ft_strlen(tab);
-		}
 		if ((p = ft_strnew((size_t)BUFF_SIZE + len)) == NULL)
 			return (-1);
 		if (tab != NULL)
@@ -123,6 +124,8 @@ int				get_next_line(const int fd, char **line)
 	if (t == -1 || (write_line(line, p) == 0 && t == 0))
 	{
 		ft_bzero(*line, ft_strlen(*line));
+		free(tmp->str);
+		free(tmp);
 		return (t);
 	}
 	return (1);

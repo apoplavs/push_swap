@@ -18,8 +18,8 @@ CC = gcc
 
 LIBFT = libft/libft.a
 
-SRC = check_args.c init_args.c get_next_line.c operations.c\
-found_solution.c sorting.c support_sort.c write_operations.c separate_stacks.c
+SRC = check_args.c init_args.c get_next_line.c operations.c found_solution.c\
+sorting.c support_sort.c write_operations.c separate_a.c separate_b.c
 
 OBJ = $(SRC:.c=.o)
 

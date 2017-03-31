@@ -12,14 +12,14 @@
 
 #include "push_swap.h"
 
-int			    main(int argc,  char **argv)
+int				main(int argc, char **argv)
 {
-	t_stacks *stack;
+	t_stacks	*stack;
 
 	if (argc < 2)
 		return (1);
 	stack = read_args(argc, argv);
 	ft_sort_stack(stack, argc - 1);
+	//sleep(100);
 	return (0);
 }
-

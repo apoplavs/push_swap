@@ -43,7 +43,7 @@ int                 is_have_over(t_stacks *stack, t_stacks *end, int medium)
 	while (stack->next && stack != end)
 	{
 		stack = stack->next;
-		if (stack->x > medium)
+		if (stack->x >= medium)
 			return (1);
 	}
 	return (0);
@@ -63,6 +63,7 @@ int					find_medium(t_stacks *stack, int i)
 	}
 	ft_qsort(mas, 0, len - 1);
 	i = mas[len / 2];
+	free(mas);
 	return (i);
 }
 
@@ -87,34 +88,6 @@ int					find_medium_in_part(t_stacks *stack, int i, t_stacks *end)
 	}
 	ft_qsort(mas, 0, len - 1);
 	i = mas[len / 2];
+	free(mas);
 	return (i);
 }
-
-int     check_end_stack(t_stacks *stack, t_stacks *end_stack)
-{
-	while (stack->next)
-		stack = stack->next;
-	if (end_stack == stack)
-		return (1);
-	return (0);
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

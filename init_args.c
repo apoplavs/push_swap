@@ -11,8 +11,34 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include <stdio.h>
 
-t_stacks        *read_args(int ac, char **av)
+void			del_inst(t_list *inst)
+{
+	t_list	*p;
+
+	while(inst)
+	{
+		p = inst;
+		inst = inst->next;
+		free(p->content);
+		free(p);
+	}
+}
+
+void			del_stack(t_stacks *stack)
+{
+	t_stacks	*p;
+
+	while(stack)
+	{
+		p = stack;
+		stack = stack->next;
+		free(p);
+	}
+}
+
+t_stacks		*read_args(int ac, char **av)
 {
 	int			i;
 	int			*mas;
@@ -23,60 +49,61 @@ t_stacks        *read_args(int ac, char **av)
 	while (++i < ac)
 		mas[i - 1] = ft_atoi(av[i]);
 	check_duplicates(mas, ac - 1);
-/*	ft_qsort(mas, 0, ac - 2);
-	i = -1;
-	while (++i < ac - 1)
-		printf("%d ", mas[i]);*/
-    return (ft_init_stack(mas, ac - 1));
+	return (ft_init_stack(mas, ac - 1));
 }
 
-t_stacks        *ft_init_stack(int *mas, int len)
+t_stacks		*ft_init_stack(int *mas, int len)
 {
-    int         i;
-    t_stacks	*stack;
-    t_stacks	*p;
+	int			i;
+	t_stacks	*stack;
+	t_stacks	*p;
 	t_stacks	*top;
 
-    i = 0;
-    stack = malloc(sizeof(*stack));
+	i = 0;
+	stack = malloc(sizeof(*stack));
 	top = stack;
 	top->x = 0;
 	stack = malloc(sizeof(*stack));
 	stack->x = mas[0];
 	top->next = stack;
-    while (++i < len)
-    {
-        p = stack;
-        stack = malloc(sizeof(*stack));
-        p->next = stack;
-        stack->x = mas[i];
-    }
-    stack->next = NULL;
+	while (++i < len)
+	{
+		p = stack;
+		stack = malloc(sizeof(*stack));
+		p->next = stack;
+		stack->x = mas[i];
+	}
+	stack->next = NULL;
 	free(mas);
-    return (top);
+	return (top);
 }
 
-t_list          *read_instructions(int fd)
+t_list			*read_instructions(int fd)
 {
-    t_list      *inst;
-    t_list      *first;
-    char        *str;
-    t_list      *p;
-	int         i;
+	t_list		*inst;
+	t_list		*first;
+	char		*str;
+	t_list		*p;
+	int			i;
 
-    inst = ft_lstnew(NULL, 0);
-    first = inst;
-    p = inst;
-    while (get_next_line(fd, &str))
-    {
-        check_instructions(str);
-        inst = ft_lstnew(str, ft_strlen(str) + 1);
-        p->next = inst;
-        p = inst;
-	    i = 0;
-	    while (i < 100)
-		    i++;
-    }
+	inst = ft_lstnew(NULL, 0);
+	first = inst;
+	p = inst;
+	while (get_next_line(fd, &str))
+	{
+		check_instructions(str);
+		inst = ft_lstnew(str, ft_strlen(str) + 1);
+		p->next = inst;
+		p = inst;
+		i = 0;
+		free(str);
+		//sleep(1);
+		while (i < 1000)
+			i++;
+	}
+	free(str);
 	inst->next = NULL;
-    return (first->next);
+	p = first->next;
+	free(first);
+	return (p);
 }

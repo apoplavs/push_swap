@@ -16,18 +16,23 @@ void		ft_maxint(const char *str)
 {
 	int		i;
 	long	res;
+	int		f;
 
 	i = 0;
 	res = 0;
+	f = 0;
 	if (str[i] == '-' || str[i] == '+')
+	{
 		i++;
+		f = 1;
+	}
 	while (str[i] <= '9' && str[i] >= '0')
 	{
 		res *= 10;
 		res += str[i] - 48;
 		i++;
 	}
-	if (res > 2147483647)
+	if ((f == 1 && res > 2147483648) || (f == 0 && res > 2147483647))
 		ft_error();
 }
 
@@ -56,27 +61,27 @@ void		check_args(int ac, char **av)
 	{
 		j = 0;
 		while (av[i][j])
-			if (ft_isdigit((int)av[i][j++]) == 0)
+			if (ft_isdigit((int)av[i][j++]) == 0 && av[i][j - 1] != '-')
 				ft_error();
 		ft_maxint(av[i]);
 	}
 }
 
-void        check_instructions(char *inst)
+void		check_instructions(char *inst)
 {
-    if (ft_strcmp(inst, "sa") == 0 || ft_strcmp(inst, "sb") == 0
-        || ft_strcmp(inst, "ss") == 0 || ft_strcmp(inst, "pa") == 0
-        || ft_strcmp(inst, "pb") == 0 || ft_strcmp(inst, "ra") == 0
-        || ft_strcmp(inst, "rb") == 0 || ft_strcmp(inst, "rr") == 0
-        || ft_strcmp(inst, "rra") == 0 || ft_strcmp(inst, "rrb") == 0
-        || ft_strcmp(inst, "rrr") == 0 || ft_strcmp(inst, "") == 0)
-        return ;
-    else
-        ft_error();
+	if (ft_strcmp(inst, "sa") == 0 || ft_strcmp(inst, "sb") == 0
+		|| ft_strcmp(inst, "ss") == 0 || ft_strcmp(inst, "pa") == 0
+		|| ft_strcmp(inst, "pb") == 0 || ft_strcmp(inst, "ra") == 0
+		|| ft_strcmp(inst, "rb") == 0 || ft_strcmp(inst, "rr") == 0
+		|| ft_strcmp(inst, "rra") == 0 || ft_strcmp(inst, "rrb") == 0
+		|| ft_strcmp(inst, "rrr") == 0 || ft_strcmp(inst, "") == 0)
+		return ;
+	else
+		ft_error();
 }
 
 void		ft_error()
 {
 	write(2, "Error\n", 6);
-    exit(1);
+	exit(1);
 }
