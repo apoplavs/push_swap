@@ -1,22 +1,31 @@
-
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   operations.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: apoplavs <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/04/02 16:55:36 by apoplavs          #+#    #+#             */
+/*   Updated: 2017/04/02 16:55:38 by apoplavs         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "push_swap.h"
 
 int				ft_swap_stack(t_stacks *stack)
 {
-
-	if ( stack != NULL && stack->next != NULL)
+	if (stack != NULL && stack->next != NULL)
 	{
 		ft_swap(&stack->x, &stack->next->x);
-
 		return (1);
 	}
 	return (0);
 }
 
-int				ft_push(t_stacks *stack1, t_stacks *stack2, t_stacks *top_s1, t_stacks *top_s2)
+int				ft_push(t_stacks *stack1, t_stacks *stack2,
+	t_stacks *top_s1, t_stacks *top_s2)
 {
-	t_stacks    *temp;
+	t_stacks	*temp;
 
 	if (stack1 != NULL)
 	{
@@ -27,7 +36,7 @@ int				ft_push(t_stacks *stack1, t_stacks *stack2, t_stacks *top_s1, t_stacks *t
 		top_s2->next = temp;
 		return (1);
 	}
-		return (0);
+	return (0);
 }
 
 int				ft_rotate(t_stacks *stack, t_stacks *top_s)

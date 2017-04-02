@@ -68,7 +68,7 @@ static int		ft_read_file(int t, t_fd *tmp, char *buf, size_t len)
 	{
 		if ((t = (int)read(tmp->fd, buf, BUFF_SIZE)) == -1)
 			return (-1);
-		if (p != NULL && (tab = ft_read_support(p, tab, buf, 2)))	
+		if (p != NULL && (tab = ft_read_support(p, tab, buf, 2)))
 			len = ft_strlen(tab);
 		if ((p = ft_strnew((size_t)BUFF_SIZE + len)) == NULL)
 			return (-1);

@@ -74,3 +74,36 @@ int				ft_separate_a(t_stacks *dst, t_stacks *src,
 	else
 		return (separate_part_a(dst, src, end, command));
 }
+
+void			cancel_opr(char opr, t_stacks *stack_a, char *command)
+{
+	int			i;
+	
+	i = 0;
+	if (opr == SA)
+		ft_swap_stack(stack_a->next);
+	else if (opr == RA)
+		ft_rrotate(stack_a->next, stack_a);
+	else if (opr == RRA)
+		ft_rotate(stack_a->next, stack_a);
+	while (command[i + 1])
+		i++;
+	while (i > 0 && command[i - 1] != '\n')
+		i--;
+	command[i] = '\0';
+	command[i + 1] = '\0';
+}
+
+int				stack_len(t_stacks *stack)
+{
+	int			i;
+
+	i = 0;
+	while (stack->next)
+	{
+		stack = stack->next;
+		i++;
+	}
+	return (i);
+}
+

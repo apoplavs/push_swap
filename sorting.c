@@ -1,6 +1,15 @@
-//
-// Created by Andriy Poplavskyi on 3/20/17.
-//
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sorting.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: apoplavs <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/04/02 17:00:59 by apoplavs          #+#    #+#             */
+/*   Updated: 2017/04/02 17:01:01 by apoplavs         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 static int		partition(int a[], int less, int high, int i)
@@ -11,14 +20,14 @@ static int		partition(int a[], int less, int high, int i)
 
 	pivot = a[less];
 	j = high + 1;
-	while(1)
+	while (1)
 	{
-		while(++i <= high && a[i] <= pivot)
+		while (++i <= high && a[i] <= pivot)
 			;
-		while(--j && a[j] > pivot )
+		while (--j && a[j] > pivot)
 			;
-		if(i >= j)
-			break;
+		if (i >= j)
+			break ;
 		t = a[i];
 		a[i] = a[j];
 		a[j] = t;
@@ -33,11 +42,11 @@ void			ft_qsort(int a[], int less, int high)
 {
 	int			j;
 
-	if(less < high)
+	if (less < high)
 	{
 		j = partition(a, less, high, less);
-		ft_qsort( a, less, j-1);
-		ft_qsort( a, j+1, high);
+		ft_qsort(a, less, j - 1);
+		ft_qsort(a, j + 1, high);
 	}
 }
 
@@ -49,7 +58,7 @@ int				if_need_swap(t_stacks *stack)
 		return (-1);
 }
 
-int            if_need_rotate(t_stacks *stack, char **command, int f)
+int				if_need_rotate(t_stacks *stack, char **command, int f)
 {
 	if (f == 1)
 		if (if_need_swap(stack->next) == 1)
@@ -68,7 +77,8 @@ int            if_need_rotate(t_stacks *stack, char **command, int f)
 	return (0);
 }
 
-void			ft_sort_top(t_stacks *stack_a, t_stacks *stack_b, char **command)
+void			ft_sort_top(t_stacks *stack_a,
+	t_stacks *stack_b, char **command)
 {
 	int			fa;
 	int			fb;

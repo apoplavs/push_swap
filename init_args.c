@@ -16,7 +16,7 @@ void			del_inst(t_list *inst)
 {
 	t_list	*p;
 
-	while(inst)
+	while (inst)
 	{
 		p = inst;
 		inst = inst->next;
@@ -29,7 +29,7 @@ void			del_stack(t_stacks *stack)
 {
 	t_stacks	*p;
 
-	while(stack)
+	while (stack)
 	{
 		p = stack;
 		stack = stack->next;
@@ -37,16 +37,19 @@ void			del_stack(t_stacks *stack)
 	}
 }
 
-t_stacks		*read_args(int ac, char **av)
+t_stacks		*read_args(int ac, char **av, t_flag *flag)
 {
 	int			i;
 	int			*mas;
+	int			t;
 
-	i = 0;
+	t = init_flag(ac, av, flag);
+	check_args(ac, av, t);
+	ac = ac - t;
 	mas = malloc(sizeof(int) * ac);
+	i = 0;
 	while (++i < ac)
-		mas[i - 1] = ft_atoi(av[i]);
-	check_args(ac, av);
+		mas[i - 1] = ft_atoi(av[i + t]);
 	check_duplicates(mas, ac - 1);
 	return (ft_init_stack(mas, ac - 1));
 }

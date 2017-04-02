@@ -16,14 +16,14 @@ NAME2 = checker
 
 CC = gcc
 
-LIBFT = libft/libft.a
+LIBFT = libftprintf/libftprintf.a
 
 SRC = check_args.c init_args.c get_next_line.c operations.c found_solution.c\
-sorting.c support_sort.c write_operations.c separate_a.c separate_b.c
+sorting.c support_sort.c write_operations.c separate_a.c separate_b.c flags.c
 
 OBJ = $(SRC:.c=.o)
 
-HEADERS = libft/libft.h push_swap.h get_next_line.h
+HEADERS = libftprintf/ft_printf.h push_swap.h get_next_line.h
 
 FLAGS = -Wall -Wextra -Werror
 
@@ -45,13 +45,13 @@ $(OBJ): %.o: %.c
 	$(CC) -c $(FLAGS) $< -o $@
 
 $(LIBFT):
-	make -C libft/
+	make -C libftprintf/
 
 libft_clean:
-	make -C libft/ clean
+	make -C libftprintf/ clean
 
 libft_fclean:
-	make -C libft/ fclean
+	make -C libftprintf/ fclean
 
 clean: libft_clean
 	rm -f $(OBJ) push_swap.h.gch push_swap_main.o checker_main.o get_next_line.h.gch *~

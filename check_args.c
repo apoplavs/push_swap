@@ -51,12 +51,10 @@ void		check_duplicates(int *a, int len)
 	}
 }
 
-void		check_args(int ac, char **av)
+void		check_args(int ac, char **av, int i)
 {
 	int		j;
-	int		i;
 
-	i = 0;
 	while (++i < ac)
 	{
 		j = 0;
@@ -80,8 +78,9 @@ void		check_instructions(char *inst)
 		ft_error();
 }
 
-void		ft_error()
+void		ft_error(void)
 {
+	ft_putstr("\033[0;31m");
 	write(2, "Error\n", 6);
 	exit(1);
 }

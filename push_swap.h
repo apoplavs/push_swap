@@ -30,20 +30,21 @@ typedef struct		s_stacks
 	struct s_stacks	*next;
 }					t_stacks;
 
-typedef struct      s_flags
+typedef struct		s_flag
 {
-	int color       : 1;
-	int file        : 1;
-	int s_status    : 1;
-	int time_step   : 1;
-}                   t_flags;
+	int color		: 1;
+	int count_opr	: 1;
+	int s_status	: 1;
+	int time_step	: 1;
+	int fail_opr	: 1;
+}					t_flag;
 
 /*
-** init_argc.c
+** init_args.c
 */
 void				del_inst(t_list *inst);
 void				del_stack(t_stacks *stack);
-t_stacks			*read_args(int ac, char **av);
+t_stacks			*read_args(int ac, char **av, t_flag *flag);
 t_stacks			*ft_init_stack(int *mas, int len);
 t_list				*read_instructions(int fd);
 
@@ -52,7 +53,7 @@ t_list				*read_instructions(int fd);
 */
 void				ft_maxint(const char *str);
 void				check_duplicates(int *a, int len);
-void				check_args(int ac, char **av);
+void				check_args(int ac, char **av, int i);
 void				ft_error();
 void				check_instructions(char *inst);
 
@@ -87,7 +88,6 @@ void				ft_sort_top(t_stacks *stack_a, t_stacks *stack_b,
 ** support_sort.c
 */
 t_stacks			*get_end(t_stacks *src, int len);
-int					stack_len(t_stacks *stack);
 int					is_have_less(t_stacks *stack, t_stacks *end, int medium);
 int					find_medium(t_stacks *stack, int i);
 int					is_have_over(t_stacks *stack, t_stacks *end, int medium);
@@ -98,13 +98,14 @@ int					find_medium_in_part(t_stacks *stack, int i, t_stacks *end);
 */
 int					write_opr(char opr, char **command);
 void				optimization_opr(char **command);
-void				cancel_opr(char opr, t_stacks *stack_a, char *command);
 
 /*
 ** separate_stack_a.c
 */
 int					ft_separate_a(t_stacks *dst, t_stacks *src,
 	char **command, int len);
+void			cancel_opr(char opr, t_stacks *stack_a, char *command);
+int				stack_len(t_stacks *stack);
 
 /*
 ** separate_stack_b.c
@@ -113,5 +114,12 @@ void				rt_rrt(t_stacks *stack, char **command, char opr,
 	int (*f)(t_stacks*, t_stacks*));
 int					ft_separate_b(t_stacks *dst, t_stacks *src,
 	char **command, int len);
+
+/*
+** flags.c
+*/
+int					init_flag(int ac, char **av, t_flag *flag);
+void				print_result(char *str, t_flag *flag);
+void				print_stacks(t_stacks *stack_a, t_stacks *stack_b);
 
 #endif

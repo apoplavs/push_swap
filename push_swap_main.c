@@ -15,10 +15,11 @@
 int				main(int argc, char **argv)
 {
 	t_stacks	*stack;
+	t_flag		flag;
 
 	if (argc < 2)
 		return (1);
-	stack = read_args(argc, argv);
+	stack = read_args(argc, argv, &flag);
 	ft_sort_stack(stack);
 	return (0);
 }
