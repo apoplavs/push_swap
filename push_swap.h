@@ -104,8 +104,8 @@ void				optimization_opr(char **command);
 */
 int					ft_separate_a(t_stacks *dst, t_stacks *src,
 	char **command, int len);
-void			cancel_opr(char opr, t_stacks *stack_a, char *command);
-int				stack_len(t_stacks *stack);
+void				cancel_opr(char opr, t_stacks *stack_a, char *command);
+int					stack_len(t_stacks *stack);
 
 /*
 ** separate_stack_b.c

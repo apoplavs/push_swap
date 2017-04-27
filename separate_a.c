@@ -78,7 +78,7 @@ int				ft_separate_a(t_stacks *dst, t_stacks *src,
 void			cancel_opr(char opr, t_stacks *stack_a, char *command)
 {
 	int			i;
-	
+
 	i = 0;
 	if (opr == SA)
 		ft_swap_stack(stack_a->next);
@@ -106,4 +106,3 @@ int				stack_len(t_stacks *stack)
 	}
 	return (i);
 }
-
